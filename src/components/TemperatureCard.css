@@ -36,6 +36,7 @@
 }
 
 .temp-value {
+    flex:.5;
     font-size: 6vw;
     font-weight:500;
 }
