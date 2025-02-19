@@ -1,11 +1,13 @@
 import React from "react";
 import TemperatureCard from "./components/TemperatureCard";
 import BigCard from "./components/BigCard";
+import SearchBar from "./components/SearchBar";
 import "./App.css";
 
 function App(){
     return (
         <div className="app-container">
+            <SearchBar/>
             <div className="grid-container">
                 <div class="col">
                     <TemperatureCard title ="Temperature" temperature={25} unit="C"/>
