@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
 
-function SearchBar({ onSearch }) { 
+function SearchBar({ onSearch }) {
 
   //Create a state variable called searchText and set it to an empty string
   //This variable stores the text the user types
-  const [searchText, setSearchText] = useState(''); 
+  const [searchText, setSearchText] = useState('');
 
   //handleChange is called every time the suer types in the search bar
   //It updates the state with the new input value
@@ -22,6 +22,14 @@ function SearchBar({ onSearch }) {
     }
   };
 
+  //handleIconClick is called when the user clicks on the search icon
+  //It checks if the searchText is not empty or just spaces like before
+  const handleIconClick = () => {
+    if (searchText.trim() !== '') {
+      onSearch(searchText);
+    }
+  };
+
   return (
     <div className="search-bar">
       <div className="search-inner">
@@ -33,8 +41,13 @@ function SearchBar({ onSearch }) {
           onChange={handleChange}
           onKeyDown={handleKeyPress}
         />
+        <img
+          src="/images/search.svg"
+          alt="search icon"
+          className="search-icon"
+          onClick={handleIconClick}
+        />
 
-        <img src="/images/search.svg" alt="search icon" className="search-icon" />
       </div>
     </div>
   );
