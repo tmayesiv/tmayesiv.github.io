@@ -5,15 +5,10 @@
     margin: 20px;
     background-color: #f5f5f5;
     border-radius: 10px;
-    padding: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card-title {
-    position: absolute;
     top: 0px;
     left: 0px;
     font-size: 2vw;
@@ -25,19 +20,21 @@
 .card-content {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    width:80%;
+    padding:10px 10px 10px 10px;
 }
 
 .weather-icon {
     flex:.5;
-    max-width: 150px;
-    max-height: 150px;
+    height: 8vmin;
 }
 
 .temp-value {
+    padding: 0 10px 0 10px;
     flex:.5;
-    font-size: 6vw;
+    font-size: min(4vmin, 70px);
     font-weight:500;
 }
 
