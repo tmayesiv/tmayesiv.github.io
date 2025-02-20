@@ -4,6 +4,8 @@ import BigCard from "./components/BigCard";
 import SearchBar from "./components/SearchBar";
 import { fetchWeather3, fetchWeatherByCoords } from "./services/weatherServices3";
 import "./App.css";
+import Hourly from "./components/Hourly";
+import Weekly from "./components/Weekly";
 
 function App() {
 
@@ -30,29 +32,29 @@ function App() {
   //If the location is obtained, fetch the weather data for that location.
   useEffect(() => {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                //Get the latitude and longitude from the position object.
-                const { latitude, longitude } = position.coords;
-                //Call the fetchWeather3 function with the coordinates to get the weather data.
-                fetchWeatherByCoords(latitude, longitude)
-                .then((data) => {
-                    //Update the weatherData state with the fetched data.
-                    setWeatherData(data);
-                })
-                .catch((error) => {
-                    //Log any errors that occur during the fetch.
-                    console.error("Error fetching weather data:", error);
-                });
-            },
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          //Get the latitude and longitude from the position object.
+          const { latitude, longitude } = position.coords;
+          //Call the fetchWeather3 function with the coordinates to get the weather data.
+          fetchWeatherByCoords(latitude, longitude)
+            .then((data) => {
+              //Update the weatherData state with the fetched data.
+              setWeatherData(data);
+            })
+            .catch((error) => {
+              //Log any errors that occur during the fetch.
+              console.error("Error fetching weather data:", error);
+            });
+        },
 
-            (error) => {
-                //Log any errors that occur during the geolocation process.
-                console.error("Error getting location:", error);
-            }
-        );
+        (error) => {
+          //Log any errors that occur during the geolocation process.
+          console.error("Error getting location:", error);
+        }
+      );
     }
-}, []);
+  }, []);
 
   return (
     <div className="app-container">
@@ -63,33 +65,42 @@ function App() {
       {/*Conditionally render the weather information only if weatherData exists.*/}
       {weatherData && (
         <div className="grid-container">
-          <div className="col">
-            <TemperatureCard
-              title="Temperature"
-              temperature={Math.round(weatherData.current.temp)}
-              unit="F"
-            />
-            <BigCard
-              title="Wind"
-              value={Math.round(weatherData.current.wind_speed)}
-              unit="mph"
-            />
+          <div className="row">
+            <div className="col">
+              <TemperatureCard
+                title="Temperature"
+                temperature={Math.round(weatherData.current.temp)}
+                unit="F"
+              />
+              <BigCard
+                title="Wind"
+                value={Math.round(weatherData.current.wind_speed)}
+                unit="mph"
+              />
+            </div>
+            <div className="col">
+              <BigCard
+                title="Humidity"
+                value={weatherData.current.humidity}
+                unit="%"
+              />
+              <BigCard
+                title="UV Index"
+                value={weatherData.current.uvi}
+                unit=""
+              />
+            </div>
           </div>
-          <div className="col">
-            <BigCard
-              title="Humidity"
-              value={weatherData.current.humidity}
-              unit="%"
-            />
-            <BigCard
-              title="UV Index"
-              value={weatherData.current.uvi}
-              unit=""
-            />
+          <div className="row">
+            <Hourly />
+          </div>
+          <div className="row">
+            <Weekly />
           </div>
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 }
 
