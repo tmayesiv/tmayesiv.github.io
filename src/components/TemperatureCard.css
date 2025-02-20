@@ -11,7 +11,8 @@
 .card-title {
     top: 0px;
     left: 0px;
-    font-size: 2vw;
+    padding-right:20px;
+    font-size: min(3vw, 3vh);
     font-weight: 700;
     color: #1e1e1e;
     margin: 0;
@@ -22,6 +23,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin:auto;
     width:80%;
     padding:10px 10px 10px 10px;
 }
@@ -32,9 +34,9 @@
 }
 
 .temp-value {
-    padding: 0 10px 0 10px;
+    padding: 0 10% 0 10px;
     flex:.5;
-    font-size: min(4vmin, 70px);
+    font-size: 4vw;
     font-weight:500;
 }
 

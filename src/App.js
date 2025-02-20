@@ -26,7 +26,7 @@ function App() {
     }
   };
 
-  //useEfefct hook to get the user's current location when the component mounts.
+  //useEffect hook to get the user's current location when the component mounts.
   //If the location is obtained, fetch the weather data for that location.
   useEffect(() => {
     if (navigator.geolocation) {
@@ -66,12 +66,12 @@ function App() {
           <div className="col">
             <TemperatureCard
               title="Temperature"
-              temperature={weatherData.current.temp}
+              temperature={Math.round(weatherData.current.temp)}
               unit="F"
             />
             <BigCard
               title="Wind"
-              value={weatherData.current.wind_speed}
+              value={Math.round(weatherData.current.wind_speed)}
               unit="mph"
             />
           </div>
