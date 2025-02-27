@@ -92,10 +92,22 @@ function App() {
             </div>
           </div>
           <div className="row">
-            <Hourly />
+            <Hourly 
+              title="Hourly"
+              time={weatherData.current.dt}
+              temp0={Math.round(weatherData.current.temp)}
+              temp1={Math.round(weatherData.hourly[2].temp)}
+              temp2={Math.round(weatherData.hourly[3].temp)}
+              temp3={Math.round(weatherData.hourly[4].temp)}
+              temp4={Math.round(weatherData.hourly[5].temp)}
+              temp5={Math.round(weatherData.hourly[6].temp)}
+              temp6={Math.round(weatherData.hourly[7].temp)}
+              />
           </div>
           <div className="row">
-            <Weekly />
+            <Weekly 
+            title="Weekly"
+            />
           </div>
         </div>
       )
