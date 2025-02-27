@@ -107,6 +107,21 @@ function App() {
           <div className="row">
             <Weekly 
             title="Weekly"
+            day={weatherData.daily[0].dt}
+            high0={Math.round(weatherData.daily[0].temp.max)}
+            low0={Math.round(weatherData.daily[0].temp.min)}
+            high1={Math.round(weatherData.daily[1].temp.max)}
+            low1={Math.round(weatherData.daily[1].temp.min)}
+            high2={Math.round(weatherData.daily[2].temp.max)}
+            low2={Math.round(weatherData.daily[2].temp.min)}
+            high3={Math.round(weatherData.daily[3].temp.max)}
+            low3={Math.round(weatherData.daily[3].temp.min)}
+            high4={Math.round(weatherData.daily[4].temp.max)}
+            low4={Math.round(weatherData.daily[4].temp.min)}
+            high5={Math.round(weatherData.daily[5].temp.max)}
+            low5={Math.round(weatherData.daily[5].temp.min)}
+            high6={Math.round(weatherData.daily[6].temp.max)}
+            low6={Math.round(weatherData.daily[6].temp.min)}
             />
           </div>
         </div>
