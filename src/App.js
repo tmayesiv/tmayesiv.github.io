@@ -6,6 +6,7 @@ import { fetchWeather3, fetchWeatherByCoords } from "./services/weatherServices3
 import "./App.css";
 import Hourly from "./components/Hourly";
 import Weekly from "./components/Weekly";
+import CityDisplay from "./components/CityDisplay";
 
 function App() {
 
@@ -27,6 +28,8 @@ function App() {
       console.error("Error fetching weather data:", error);
     }
   };
+
+
 
   //useEffect hook to get the user's current location when the component mounts.
   //If the location is obtained, fetch the weather data for that location.
@@ -65,6 +68,13 @@ function App() {
       {/*Conditionally render the weather information only if weatherData exists.*/}
       {weatherData && (
         <div className="grid-container">
+          <div className="city-name">
+            <CityDisplay
+              lat={parseFloat(weatherData.lat)}
+              lon={parseFloat(weatherData.lon)}
+
+            />
+          </div>
           <div className="row">
             <div className="col">
               <TemperatureCard

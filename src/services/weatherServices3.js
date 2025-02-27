@@ -2,6 +2,7 @@ const API_KEY = process.env.REACT_APP_OPENWEATHER_KEY;
 
 //Define the base URLs for the weather API
 const GEOCODE_URL = "https://api.openweathermap.org/geo/1.0/direct";
+const REVERSE_GEOCODE_URL = "https://api.openweathermap.org/geo/1.0/reverse";
 const ONE_CALL_URL = "https://api.openweathermap.org/data/3.0/onecall";
 
 /**
@@ -74,6 +75,29 @@ export const fetchWeatherByCoords = async (lat, lon) => {
     }
 
     return await response.json();
+
+
+};
+
+
+/**
+//Fetches City name from coordinates using Reverse Geocoding API.
+//@param {number} lat - The latitude of the location.
+//@param {number} lon - The longitude of the location.
+//@returns {Promise<Object>} - The city name data.
+*/
+
+export const fetchCityByCoords = async (lat, lon) => {
+  //Build the URL for the Reverse Geocode API using the provided coordinates
+  const url = `${REVERSE_GEOCODE_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+
+  //Fetch the URL and check for errors.
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("Failed to fetch city name");
+  }
+
+  return await response.json();
 
 
 };
