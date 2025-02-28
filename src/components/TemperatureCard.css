@@ -11,8 +11,7 @@
 .card-title {
     top: 0px;
     left: 0px;
-    padding-right:20px;
-    font-size: min(3vw, 3vh);
+    font-size: min(2vw, 2vh);
     font-weight: 700;
     color: #1e1e1e;
     margin: 0;
@@ -25,18 +24,19 @@
     align-items: center;
     margin:auto;
     width:80%;
+    min-width: fit-content;
     padding:10px 10px 10px 10px;
 }
 
 .weather-icon {
     flex:.5;
-    height: 8vmin;
+    height: 7vmin;
 }
 
 .temp-value {
     padding: 0 10% 0 10px;
     flex:.5;
-    font-size: 4vw;
+    font-size: min(4vw, 4vh);
     font-weight:500;
 }
 
