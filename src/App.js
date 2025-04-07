@@ -7,12 +7,14 @@ import "./App.css";
 import Hourly from "./components/Hourly";
 import Weekly from "./components/Weekly";
 import CityDisplay from "./components/CityDisplay";
+import Autocomplete from "react-google-autocomplete";
 
 function App() {
 
   //Create a state variable called 'weatherData' to store the fetched weather data.
   //Initially, it's set to null because no data has been fetched yet.
   const [weatherData, setWeatherData] = useState(null);
+  const GOOGLE_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
   //Define an asynchronous function 'handleSearch' that takes a city name as an input.
   //This function will trigger when the user submits a search in the SearchBar component.
@@ -63,8 +65,28 @@ function App() {
     <div className="app-container">
       {/*Render the SearchBar component and pass the handleSearch function as a prop called 'onSearch'.
           When the user submits a search (presses Enter), SearchBar calls this function.*/}
-      <SearchBar onSearch={handleSearch} />
-
+      {/*<SearchBar onSearch={handleSearch} />**/}
+      <Autocomplete
+        apiKey={GOOGLE_KEY}
+        onPlaceSelected={(place) => {
+          handleSearch(place.formatted_address)
+          console.log(place.formatted_address)
+        }}
+        
+        style={{display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "10px auto",
+          padding: "10px",
+          backgroundColor: "#f5f5f5",
+          borderRadius: "10px",
+          boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.3)",
+          width: "100%",
+          height: "30px",
+          maxWidth: "400px",
+          borderWidth: "0",
+        }}
+        />
       {/*Conditionally render the weather information only if weatherData exists.*/}
       {weatherData && (
         <div className="grid-container">
