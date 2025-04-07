@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./TemperatureCard.css";
+import "./BigCard.css";
 import { fetchCityByCoords } from "../services/weatherServices3";
 
 function CityDisplay({ lat, lon }) {

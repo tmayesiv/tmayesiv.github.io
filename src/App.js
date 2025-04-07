@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import TemperatureCard from "./components/TemperatureCard";
 import BigCard from "./components/BigCard";
 import SearchBar from "./components/SearchBar";
 import { fetchWeather3, fetchWeatherByCoords } from "./services/weatherServices3";
@@ -8,6 +7,8 @@ import Hourly from "./components/Hourly";
 import Weekly from "./components/Weekly";
 import CityDisplay from "./components/CityDisplay";
 import Autocomplete from "react-google-autocomplete";
+import { convertTemp, convertWind } from "./components/unitUtils";
+
 
 function App() {
 
@@ -15,6 +16,9 @@ function App() {
   //Initially, it's set to null because no data has been fetched yet.
   const [weatherData, setWeatherData] = useState(null);
   const GOOGLE_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+
+  //Track unit preference (imperial or metric)
+  const [units, setUnits] = useState("imperial");
 
   //Define an asynchronous function 'handleSearch' that takes a city name as an input.
   //This function will trigger when the user submits a search in the SearchBar component.
@@ -61,6 +65,15 @@ function App() {
     }
   }, []);
 
+  //Classify wind direction
+  const getCompassDirection = (deg) => {
+    const directions = [
+      "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
+      "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"
+    ];
+    return directions[Math.round(deg / 22.5) % 16];
+  };
+
   return (
     <div className="app-container">
       {/*Render the SearchBar component and pass the handleSearch function as a prop called 'onSearch'.
@@ -90,24 +103,44 @@ function App() {
       {/*Conditionally render the weather information only if weatherData exists.*/}
       {weatherData && (
         <div className="grid-container">
-          <div className="city-name">
-            <CityDisplay
-              lat={parseFloat(weatherData.lat)}
-              lon={parseFloat(weatherData.lon)}
-
-            />
+          <div className="row">
+            <div className="city-name">
+              <CityDisplay
+                lat={parseFloat(weatherData.lat)}
+                lon={parseFloat(weatherData.lon)}
+              />
+            </div>
+            <div className="unit-toggle">
+              <label className="toggle-switch">
+                <input
+                  type="checkbox"
+                  checked={units === "metric"}
+                  onChange={() =>
+                    setUnits(units === "imperial" ? "metric" : "imperial")
+                  }
+                />
+                <div className="slider">
+                  <span className="label">°F</span>
+                  <span className="label">°C</span>
+                </div>
+              </label>
+            </div>
           </div>
           <div className="row">
             <div className="col">
-              <TemperatureCard
+              <BigCard
                 title="Temperature"
-                temperature={Math.round(weatherData.current.temp)}
-                unit="F"
+                value={convertTemp(weatherData.current.temp, units)}
+                unit={units === "metric" ? "°C" : "°F"}
+                iconCode={weatherData.current.weather[0].id.toString()}
+                isDaytime={weatherData.current.dt > weatherData.current.sunrise && weatherData.current.dt < weatherData.current.sunset}
               />
               <BigCard
                 title="Wind"
-                value={Math.round(weatherData.current.wind_speed)}
-                unit="mph"
+                value={convertWind(weatherData.current.wind_speed, units)}
+                unit={units === "metric" ? "m/s" : "mph"}
+                direction={`${getCompassDirection(weatherData.current.wind_deg)}`}
+                iconClass={`wi-wind towards-${Math.round(weatherData.current.wind_deg / 5) * 5}-deg`}
               />
             </div>
             <div className="col">
@@ -124,36 +157,47 @@ function App() {
             </div>
           </div>
           <div className="row">
-            <Hourly 
+            <Hourly
               title="Hourly"
               time={weatherData.current.dt}
-              temp0={Math.round(weatherData.current.temp)}
-              temp1={Math.round(weatherData.hourly[2].temp)}
-              temp2={Math.round(weatherData.hourly[3].temp)}
-              temp3={Math.round(weatherData.hourly[4].temp)}
-              temp4={Math.round(weatherData.hourly[5].temp)}
-              temp5={Math.round(weatherData.hourly[6].temp)}
-              temp6={Math.round(weatherData.hourly[7].temp)}
-              />
+              temp0={Math.round(weatherData.hourly[0].temp)}
+              temp1={Math.round(weatherData.hourly[1].temp)}
+              temp2={Math.round(weatherData.hourly[2].temp)}
+              temp3={Math.round(weatherData.hourly[3].temp)}
+              temp4={Math.round(weatherData.hourly[4].temp)}
+              temp5={Math.round(weatherData.hourly[5].temp)}
+              temp6={Math.round(weatherData.hourly[6].temp)}
+              code0={weatherData.hourly[0].weather[0].id.toString()}
+              code1={weatherData.hourly[1].weather[0].id.toString()}
+              code2={weatherData.hourly[2].weather[0].id.toString()}
+              code3={weatherData.hourly[3].weather[0].id.toString()}
+              code4={weatherData.hourly[4].weather[0].id.toString()}
+              code5={weatherData.hourly[5].weather[0].id.toString()}
+              code6={weatherData.hourly[6].weather[0].id.toString()}
+              isDaytime={
+                weatherData.current.dt > weatherData.current.sunrise &&
+                weatherData.current.dt < weatherData.current.sunset
+              }
+            />
           </div>
           <div className="row">
-            <Weekly 
-            title="Weekly"
-            day={weatherData.daily[0].dt}
-            high0={Math.round(weatherData.daily[0].temp.max)}
-            low0={Math.round(weatherData.daily[0].temp.min)}
-            high1={Math.round(weatherData.daily[1].temp.max)}
-            low1={Math.round(weatherData.daily[1].temp.min)}
-            high2={Math.round(weatherData.daily[2].temp.max)}
-            low2={Math.round(weatherData.daily[2].temp.min)}
-            high3={Math.round(weatherData.daily[3].temp.max)}
-            low3={Math.round(weatherData.daily[3].temp.min)}
-            high4={Math.round(weatherData.daily[4].temp.max)}
-            low4={Math.round(weatherData.daily[4].temp.min)}
-            high5={Math.round(weatherData.daily[5].temp.max)}
-            low5={Math.round(weatherData.daily[5].temp.min)}
-            high6={Math.round(weatherData.daily[6].temp.max)}
-            low6={Math.round(weatherData.daily[6].temp.min)}
+            <Weekly
+              title="Weekly"
+              day={weatherData.daily[0].dt}
+              high0={Math.round(weatherData.daily[0].temp.max)}
+              low0={Math.round(weatherData.daily[0].temp.min)}
+              high1={Math.round(weatherData.daily[1].temp.max)}
+              low1={Math.round(weatherData.daily[1].temp.min)}
+              high2={Math.round(weatherData.daily[2].temp.max)}
+              low2={Math.round(weatherData.daily[2].temp.min)}
+              high3={Math.round(weatherData.daily[3].temp.max)}
+              low3={Math.round(weatherData.daily[3].temp.min)}
+              high4={Math.round(weatherData.daily[4].temp.max)}
+              low4={Math.round(weatherData.daily[4].temp.min)}
+              high5={Math.round(weatherData.daily[5].temp.max)}
+              low5={Math.round(weatherData.daily[5].temp.min)}
+              high6={Math.round(weatherData.daily[6].temp.max)}
+              low6={Math.round(weatherData.daily[6].temp.min)}
             />
           </div>
         </div>

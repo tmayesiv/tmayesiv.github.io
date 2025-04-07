@@ -1,4 +1,4 @@
-.temperature-card {
+.big-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,34 +22,43 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin:auto;
-    width:80%;
+    margin: auto;
+    width: 80%;
     min-width: fit-content;
-    padding:10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
 }
 
-.weather-icon {
-    flex:.5;
-    height: 7vmin;
+.big-card .weather-icon {
+    font-size: min(6vw, 6vh);
+    flex: 0.5;
+    padding:30px;
+    color: #1e1e1e;
 }
 
-.temp-value {
+.hourly-card .weather-icon {
+    font-size: min(3vw, 3vh);
+    color: #1e1e1e;
+    padding-bottom:10%;
+    text-align:center;
+  }
+
+.big-value {
     padding: 0 10% 0 10px;
-    flex:.5;
+    flex: .5;
     font-size: min(4vw, 4vh);
-    font-weight:500;
+    font-weight: 500;
 }
 
 
 .hourly-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     margin: 20px;
     background-color: #f5f5f5;
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
-    width:100%;
+    width: 100%;
 }
 
 .weekly-card {
@@ -60,5 +69,5 @@
     background-color: #f5f5f5;
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
-    width:100%;
+    width: 100%;
 }

@@ -1,14 +1,18 @@
 import React from "react";
-import "./TemperatureCard.css";
+import "./BigCard.css";
+import { getWeatherIconClass } from "../iconMap";
 
-function BigCard({ title, value, unit}) {
+function BigCard({ title, value, unit, direction, iconClass, iconCode, isDaytime }) {
+    // Determine the icon class: either use provided class or generate it from iconCode + isDaytime
+    const resolvedIconClass = iconClass || (iconCode && getWeatherIconClass(iconCode, isDaytime));
+
     return (
-        <div className="temperature-card">
+        <div className="big-card">
             <h3 className="card-title">{title}</h3>
             <div className="card-content">
-                <img src="/images/sun_temp_icon.svg" alt="sun icon" className="weather-icon" />
-                <p className="temp-value">
-                    {value}{unit}
+                {resolvedIconClass && <i className={`wi ${resolvedIconClass} weather-icon`}></i>}
+                <p className="big-value">
+                    {value}{unit} {direction}
                 </p>
             </div>
         </div>
