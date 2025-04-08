@@ -22,11 +22,11 @@ function App() {
 
   //Define an asynchronous function 'handleSearch' that takes a city name as an input.
   //This function will trigger when the user submits a search in the SearchBar component.
-  const handleSearch = async (cityName) => {
+  const handleSearch = async (latitude, longitude) => {
     try {
       //Call the 'fetchWeather3' function with the city name to get the weather data.
       //The 'await' keyword will pause the function until the promise is resolved with data.
-      const data = await fetchWeather3(cityName);
+      const data = await fetchWeatherByCoords(latitude, longitude);
       //Update the 'weatherData' state with the fetched data.
       setWeatherData(data);
     } catch (error) {
@@ -82,8 +82,9 @@ function App() {
       <Autocomplete
         apiKey={GOOGLE_KEY}
         onPlaceSelected={(place) => {
-          handleSearch(place.formatted_address)
           console.log(place.formatted_address)
+          //handleSearch(place.formatted_address)
+          handleSearch(place.geometry.location.lat(), place.geometry.location.lng())
         }}
         
         style={{display: "flex",
@@ -140,7 +141,7 @@ function App() {
                 value={convertWind(weatherData.current.wind_speed, units)}
                 unit={units === "metric" ? "m/s" : "mph"}
                 direction={`${getCompassDirection(weatherData.current.wind_deg)}`}
-                iconClass={`wi-wind towards-${Math.round(weatherData.current.wind_deg / 5) * 5}-deg`}
+                iconClass={`wi-wind from-${Math.round(weatherData.current.wind_deg / 5) * 5}-deg`}
               />
             </div>
             <div className="col">
