@@ -71,3 +71,11 @@
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
 }
+
+.custom-svg-icon {
+    width: min(8vw, 8vh);
+    height: auto;
+    flex: 0.5;
+    padding: 30px;
+    fill: #1e1e1e;
+}

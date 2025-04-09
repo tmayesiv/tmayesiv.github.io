@@ -7,7 +7,7 @@ import Hourly from "./components/Hourly";
 import Weekly from "./components/Weekly";
 import CityDisplay from "./components/CityDisplay";
 import Autocomplete from "react-google-autocomplete";
-import { convertTemp, convertWind } from "./components/unitUtils";
+import { convertTemp, convertWind, getRaindropSvg } from "./components/unitUtils";
 
 
 function App() {
@@ -149,6 +149,7 @@ function App() {
                 title="Humidity"
                 value={weatherData.current.humidity}
                 unit="%"
+                svgFileName={getRaindropSvg(weatherData.current.humidity)}
               />
               <BigCard
                 title="UV Index"
@@ -161,13 +162,13 @@ function App() {
             <Hourly
               title="Hourly"
               time={weatherData.current.dt}
-              temp0={Math.round(weatherData.hourly[0].temp)}
-              temp1={Math.round(weatherData.hourly[1].temp)}
-              temp2={Math.round(weatherData.hourly[2].temp)}
-              temp3={Math.round(weatherData.hourly[3].temp)}
-              temp4={Math.round(weatherData.hourly[4].temp)}
-              temp5={Math.round(weatherData.hourly[5].temp)}
-              temp6={Math.round(weatherData.hourly[6].temp)}
+              temp0={convertTemp(weatherData.hourly[0].temp, units)}
+              temp1={convertTemp(weatherData.hourly[1].temp, units)}
+              temp2={convertTemp(weatherData.hourly[2].temp, units)}
+              temp3={convertTemp(weatherData.hourly[3].temp, units)}
+              temp4={convertTemp(weatherData.hourly[4].temp, units)}
+              temp5={convertTemp(weatherData.hourly[5].temp, units)}
+              temp6={convertTemp(weatherData.hourly[6].temp, units)}
               code0={weatherData.hourly[0].weather[0].id.toString()}
               code1={weatherData.hourly[1].weather[0].id.toString()}
               code2={weatherData.hourly[2].weather[0].id.toString()}
@@ -185,20 +186,20 @@ function App() {
             <Weekly
               title="Weekly"
               day={weatherData.daily[0].dt}
-              high0={Math.round(weatherData.daily[0].temp.max)}
-              low0={Math.round(weatherData.daily[0].temp.min)}
-              high1={Math.round(weatherData.daily[1].temp.max)}
-              low1={Math.round(weatherData.daily[1].temp.min)}
-              high2={Math.round(weatherData.daily[2].temp.max)}
-              low2={Math.round(weatherData.daily[2].temp.min)}
-              high3={Math.round(weatherData.daily[3].temp.max)}
-              low3={Math.round(weatherData.daily[3].temp.min)}
-              high4={Math.round(weatherData.daily[4].temp.max)}
-              low4={Math.round(weatherData.daily[4].temp.min)}
-              high5={Math.round(weatherData.daily[5].temp.max)}
-              low5={Math.round(weatherData.daily[5].temp.min)}
-              high6={Math.round(weatherData.daily[6].temp.max)}
-              low6={Math.round(weatherData.daily[6].temp.min)}
+              high0={convertTemp(weatherData.daily[0].temp.max, units)}
+              low0={convertTemp(weatherData.daily[0].temp.min, units)}
+              high1={convertTemp(weatherData.daily[1].temp.max, units)}
+              low1={convertTemp(weatherData.daily[1].temp.min, units)}
+              high2={convertTemp(weatherData.daily[2].temp.max, units)}
+              low2={convertTemp(weatherData.daily[2].temp.min, units)}
+              high3={convertTemp(weatherData.daily[3].temp.max, units)}
+              low3={convertTemp(weatherData.daily[3].temp.min, units)}
+              high4={convertTemp(weatherData.daily[4].temp.max, units)}
+              low4={convertTemp(weatherData.daily[4].temp.min, units)}
+              high5={convertTemp(weatherData.daily[5].temp.max, units)}
+              low5={convertTemp(weatherData.daily[5].temp.min, units)}
+              high6={convertTemp(weatherData.daily[6].temp.max, units)}
+              low6={convertTemp(weatherData.daily[6].temp.min, units)}
             />
           </div>
         </div>
