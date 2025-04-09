@@ -29,9 +29,9 @@
 }
 
 .big-card .weather-icon {
-    font-size: min(6vw, 6vh);
-    flex: 0.5;
-    padding:30px;
+    font-size: min(10vw, 10vh);
+    flex:1;
+    text-align:center;
     color: #1e1e1e;
 }
 
@@ -45,7 +45,7 @@
 .big-value {
     padding: 0 10% 0 10px;
     flex: .5;
-    font-size: min(4vw, 4vh);
+    font-size: min(5vw, 5vh);
     font-weight: 500;
 }
 
@@ -73,9 +73,9 @@
 }
 
 .custom-svg-icon {
-    width: min(8vw, 8vh);
-    height: auto;
-    flex: 0.5;
-    padding: 30px;
+    max-height: min(8vw, 8vh);
+    max-width: min(8vw, 8vh);
+    flex: 1;
     fill: #1e1e1e;
+    margin:auto;
 }

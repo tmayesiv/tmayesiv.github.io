@@ -15,15 +15,16 @@
  }
 
  .grid-container {
-     width: 60%;
+     width: 100%;
      margin: auto;
      display: flex;
      flex-direction: column;
-     min-width: fit-content;
+     /*min-width: fit-content;*/
      justify-content: center;
  }
 
  .grid-container .row {
+     flex: 1;
      display: flex;
      flex-direction: row;
      justify-content: center;
@@ -34,14 +35,14 @@
      width: 100%;
      display: flex;
      flex-direction: column;
-     justify-content: center;
+     justify-content: stretch;
  }
 
  .unit-toggle {
-    flex:1;
+     flex: 1;
      display: flex;
      justify-content: right;
-     align-items:center;
+     align-items: center;
  }
 
  .toggle-switch {
@@ -55,12 +56,12 @@
 
  .slider {
      display: flex;
-     flex-direction:row;
+     flex-direction: row;
      position: relative;
      width: fit-content;
      height: fit-content;
      background-color: #ddd;
-     border-radius:1rem;
+     border-radius: 1rem;
      overflow: hidden;
      align-items: center;
      justify-content: space-between;
@@ -75,8 +76,8 @@
      text-align: center;
      font-size: min(2vh, 2vw);
      z-index: 2;
-     font-weight:500;
-     padding:.3rem .5rem;
+     font-weight: 500;
+     padding: .3rem .5rem;
  }
 
  .slider::before {
