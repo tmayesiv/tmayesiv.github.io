@@ -3,7 +3,7 @@ import "./BigCard.css";
 import TimeDisplay from "./TimeDisplay";
 import { getWeatherIconClass } from "../iconMap";
 
-function Hourly({ title, time, temp0, temp1, temp2, temp3, temp4, temp5, temp6, code0, code1, code2, code3, code4, code5, code6, isDaytime }) {
+function Hourly({ title, time, temp0, temp1, temp2, temp3, temp4, temp5, temp6, code0, code1, code2, code3, code4, code5, code6, isDaytime, timezoneOffset }) {
     const hourlyData = [
         { temp: temp0, code: code0, offset: 0 },
         { temp: temp1, code: code1, offset: 1 },
@@ -25,7 +25,7 @@ function Hourly({ title, time, temp0, temp1, temp2, temp3, temp4, temp5, temp6, 
                             <i className={`wi ${iconClass} weather-icon`}></i>
                             <div className="temp">{hour.temp}°</div>
                             <div className="time">
-                                <TimeDisplay unixTimestamp={parseInt(time) + hour.offset * 3600} />
+                                <TimeDisplay unixTimestamp={parseInt(time) + hour.offset * 3600} timezoneOffset={timezoneOffset} />
                             </div>
                         </div>
                     );

@@ -7,7 +7,7 @@ import Hourly from "./components/Hourly";
 import Weekly from "./components/Weekly";
 import CityDisplay from "./components/CityDisplay";
 import Autocomplete from "react-google-autocomplete";
-import { convertTemp, convertWind, getRaindropSvg } from "./components/unitUtils";
+import { isDaytimeAtLocation, convertTemp, convertWind, getRaindropSvg, getUvSvg } from "./components/unitUtils";
 
 
 function App() {
@@ -74,6 +74,17 @@ function App() {
     return directions[Math.round(deg / 22.5) % 16];
   };
 
+  let isDaytimeNow = true;
+  if (weatherData) {
+    isDaytimeNow = isDaytimeAtLocation(
+      weatherData.current.dt,
+      weatherData.current.sunrise,
+      weatherData.current.sunset,
+      weatherData.timezone_offset
+    );
+  };
+
+
   return (
     <div className="app-container">
       {/*Render the SearchBar component and pass the handleSearch function as a prop called 'onSearch'.
@@ -86,8 +97,9 @@ function App() {
           //handleSearch(place.formatted_address)
           handleSearch(place.geometry.location.lat(), place.geometry.location.lng())
         }}
-        
-        style={{display: "flex",
+
+        style={{
+          display: "flex",
           justifyContent: "center",
           alignItems: "center",
           margin: "10px auto",
@@ -100,7 +112,7 @@ function App() {
           maxWidth: "400px",
           borderWidth: "0",
         }}
-        />
+      />
       {/*Conditionally render the weather information only if weatherData exists.*/}
       {weatherData && (
         <div className="grid-container">
@@ -134,8 +146,12 @@ function App() {
                 value={convertTemp(weatherData.current.temp, units)}
                 unit={units === "metric" ? "°C" : "°F"}
                 iconCode={weatherData.current.weather[0].id.toString()}
-                isDaytime={weatherData.current.dt > weatherData.current.sunrise && weatherData.current.dt < weatherData.current.sunset}
+                isDaytime={
+                  weatherData.current.dt > weatherData.current.sunrise &&
+                  weatherData.current.dt < weatherData.current.sunset
+                }
               />
+
               <BigCard
                 title="Wind"
                 value={convertWind(weatherData.current.wind_speed, units)}
@@ -155,6 +171,7 @@ function App() {
                 title="UV Index"
                 value={weatherData.current.uvi}
                 unit=""
+                svgFileName={getUvSvg(weatherData.current.uvi)}
               />
             </div>
           </div>
@@ -180,6 +197,8 @@ function App() {
                 weatherData.current.dt > weatherData.current.sunrise &&
                 weatherData.current.dt < weatherData.current.sunset
               }
+              timezoneOffset={weatherData.timezone_offset}
+              daily={[weatherData.daily[0], weatherData.daily[1]]}
             />
           </div>
           <div className="row">

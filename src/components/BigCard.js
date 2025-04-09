@@ -12,7 +12,7 @@ function BigCard({ title, value, unit, direction, iconClass, iconCode, isDaytime
             <div className="card-content">
                 {svgFileName ? (
                     <img
-                        src={`${process.env.PUBLIC_URL}/images/humidity/${svgFileName}`}
+                        src={`${process.env.PUBLIC_URL}/images/custom/${svgFileName}`}
                         alt={title}
                         className="custom-svg-icon"
                     />

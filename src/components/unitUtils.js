@@ -1,15 +1,24 @@
 import React from 'react';
 
+export function isDaytimeAtLocation(dt, sunrise, sunset, offset) {
+    const localTime = dt + offset;
+    const sunriseLocal = sunrise + offset;
+    const sunsetLocal = sunset + offset;
+
+    return localTime >= sunriseLocal && localTime <= sunsetLocal;
+}
+
+
 export const convertTemp = (tempF, toUnits) => {
     return toUnits === "metric"
-    ? Math.round(((tempF - 32) * 5) / 9)
-    : Math.round(tempF);
+        ? Math.round(((tempF - 32) * 5) / 9)
+        : Math.round(tempF);
 };
 
 export const convertWind = (windMph, toUnits) => {
     return toUnits === "metric"
-    ? (windMph * 0.44704).toFixed(1)
-    : Math.round(windMph);
+        ? (windMph * 0.44704).toFixed(1)
+        : Math.round(windMph);
 };
 
 export function getRaindropSvg(value) {
@@ -29,4 +38,23 @@ export function getRaindropSvg(value) {
 
     const match = ranges.find(r => value >= r.min && value < r.max);
     return match ? match.file : "wi-raindrop-0.svg";
+};
+
+export function getUvSvg(value) {
+    const ranges = [
+        { min: 0, max: .5, file: "wi-uv-0.svg" },
+        { min: .5, max: 1.5, file: "wi-uv-1.svg" },
+        { min: 1.5, max: 2.5, file: "wi-uv-2.svg" },
+        { min: 2.5, max: 3.5, file: "wi-uv-3.svg" },
+        { min: 3.5, max: 4.5, file: "wi-uv-4.svg" },
+        { min: 4.5, max: 5.5, file: "wi-uv-5.svg" },
+        { min: 5.5, max: 6.5, file: "wi-uv-6.svg" },
+        { min: 6.5, max: 7.5, file: "wi-uv-7.svg" },
+        { min: 7.5, max: 8.5, file: "wi-uv-8.svg" },
+        { min: 8.5, max: 9.5, file: "wi-uv-9.svg" },
+        { min: 9.5, max: 101, file: "wi-uv-10.svg" },
+    ];
+
+    const match = ranges.find(r => value >= r.min && value < r.max);
+    return match ? match.file : "wi-uv-0.svg";
 };

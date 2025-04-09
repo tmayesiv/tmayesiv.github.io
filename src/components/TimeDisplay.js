@@ -1,24 +1,15 @@
 import React from "react";
 
-function TimeDisplay({ unixTimestamp }) {
-    const date = new Date(unixTimestamp * 1000);
+function TimeDisplay({ unixTimestamp, timezoneOffset }) {
+  // Apply the offset in seconds manually, then use getUTC* methods
+  const date = new Date((unixTimestamp + timezoneOffset) * 1000);
+  let hours = date.getUTCHours(); // ⬅️ use UTC so it doesn't shift again
+  const period = hours >= 12 ? "p" : "a";
 
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+  hours = hours % 12;
+  hours = hours === 0 ? 12 : hours;
 
-    if (hours < 13) {
-    return (
-      <div>
-        {hours}a
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        {hours - 12}p
-      </div>
-    );}
-  }
-  
-  export default TimeDisplay;
-  
+  return <div>{hours}{period}</div>;
+}
+
+export default TimeDisplay;
