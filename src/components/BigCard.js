@@ -20,7 +20,7 @@ function BigCard({ title, value, unit, direction, iconClass, iconCode, isDaytime
                     <i className={`wi ${resolvedIconClass} weather-icon`}></i>
                 ) : null}
                 <p className="big-value">
-                    {value}{unit} {direction}
+                    {value}<span className="units">{unit}</span>
                 </p>
             </div>
         </div>

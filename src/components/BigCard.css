@@ -1,7 +1,7 @@
 .big-card {
     display: flex;
+    flex:1;
     flex-direction: column;
-    justify-content: center;
     margin: 20px;
     background-color: #f5f5f5;
     border-radius: 10px;
@@ -50,6 +50,11 @@
 }
 
 
+.direction {
+    font-size: min(3vh, 3vw);
+}
+
+
 .hourly-card {
     display: flex;
     flex-direction: column;
@@ -73,8 +78,7 @@
 }
 
 .custom-svg-icon {
-    max-height: min(8vw, 8vh);
-    max-width: min(8vw, 8vh);
+    max-width: min(9vw, 9vh);
     flex: 1;
     fill: #1e1e1e;
     margin:auto;

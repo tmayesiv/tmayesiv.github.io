@@ -7,6 +7,7 @@
 
  .app-container {
      max-width: 60%;
+     min-width:500px;
      margin: auto;
      display: flex;
      flex-direction: column;
@@ -92,4 +93,9 @@
 
  .toggle-switch input:checked+.slider::before {
      transform: translateX(100%);
+ }
+
+ .high {
+    font-weight:600;
+    font-size: min(2vh, 2vw);
  }
