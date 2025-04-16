@@ -1,5 +1,5 @@
 import React from "react";
-import "./BigCard.css";
+import "./Weekly.css";
 import TimeDisplay from "./TimeDisplay";
 import { getWeatherIconClass } from "../iconMap";
 

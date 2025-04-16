@@ -88,7 +88,7 @@ function App() {
   return (
     <div className="app-container">
       {/* Search and Autocomplete Function */}
-      
+
       <Autocomplete
         apiKey={GOOGLE_KEY}
         className="search"
@@ -107,7 +107,7 @@ function App() {
           }
         }}
         placeholder="Search for a location"
-        
+
       />
 
 
@@ -115,32 +115,34 @@ function App() {
       {weatherData && (
         <div className="grid-container">
           <div className="row">
-            <div className="city-name">
-              <CityDisplay
-                lat={parseFloat(weatherData.lat)}
-                lon={parseFloat(weatherData.lon)}
-              />
-            </div>
-            <div className="unit-toggle">
-              <label className="toggle-switch">
-                <input
-                  type="checkbox"
-                  checked={units === "metric"}
-                  onChange={() =>
-                    setUnits(units === "imperial" ? "metric" : "imperial")
-                  }
+            <div className="heading">
+              <div className="city-name">
+                <CityDisplay
+                  lat={parseFloat(weatherData.lat)}
+                  lon={parseFloat(weatherData.lon)}
                 />
-                <div className="slider">
-                  <span className="label">°F</span>
-                  <span className="label">°C</span>
-                </div>
-              </label>
+              </div>
+              <div className="unit-toggle">
+                <label className="toggle-switch">
+                  <input
+                    type="checkbox"
+                    checked={units === "metric"}
+                    onChange={() =>
+                      setUnits(units === "imperial" ? "metric" : "imperial")
+                    }
+                  />
+                  <div className="slider">
+                    <span className="label">°F</span>
+                    <span className="label">°C</span>
+                  </div>
+                </label>
+              </div>
             </div>
           </div>
           <div className="row">
-              <Summary
-                summary={weatherData.daily[0].summary}
-              />
+            <Summary
+              summary={weatherData.daily[0].summary}
+            />
           </div>
           <div className="row">
             <div className="col">
@@ -158,7 +160,7 @@ function App() {
               <BigCard
                 title="Wind"
                 value={convertWind(weatherData.current.wind_speed, units)}
-                unit={units === "metric" ? "m/s" : "mph"}
+                speed={units === "metric" ? "m/s" : "mph"}
                 direction={`${getCompassDirection(weatherData.current.wind_deg)}`}
                 iconClass={`wi-wind from-${Math.round(weatherData.current.wind_deg / 5) * 5}-deg`}
               />
