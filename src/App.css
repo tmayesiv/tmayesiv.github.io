@@ -17,13 +17,19 @@
      justify-content: center;
  }
 
- .search {
+.search-outer {
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+ .search-outer input {
+    flex:1;
      margin: 10px 0 10px 0;
      padding: 10px;
      background-color: #f5f5f5;
      border-radius: 10px;
      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-     width: 100%;
      height: 30px;
      max-width: 400px;
      border-width: 0;
@@ -132,7 +138,6 @@
 
  @media screen and (max-width: 600px) {
 
-     .app-container,
      .grid-container,
      .grid-container .row,
      .grid-container .col {
@@ -140,8 +145,21 @@
          flex-direction: column;
          align-items: stretch;
      }
+
+     .app-container{
+        max-width:90%;
+     }
+
+     .city-name h3 {
+        font-size: 5vw;
+     }
+
+     .summary p {
+        font-size: 4vw;
+     }
+
      .slider .label {
-         font-size: 0.9rem;
+         font-size: 1.2rem;
      }
 
      .unit-toggle {
@@ -152,13 +170,17 @@
          width: 100%;
      }
 
+     .card-title {
+        font-size: 4vw;
+     }
+
      .big-value {
          text-align: center;
-         font-size: 8vw;
+         font-size: 10vw;
      }
 
      .big-card .weather-icon {
-        font-size: 12vw;
+        font-size: 16vw;
     }
 
      .day5,
@@ -173,22 +195,30 @@
          width:100%;
      }
 
+     .speed {
+        font-size: 5vw;
+     }
+
+     .hourly-card .weather-icon {
+        font-size: 5vw;
+      }
+
      .weekly-card .high{
-        font-size: 3vw;
+        font-size: 4vw;
         font-weight:500;
      }
 
      .weekly-card .low, .hourly-card .temp {
-        font-size:2.5vw;
-        font-weight:300;
+        font-size:3vw;
+        font-weight:400;
      }
 
-     .search {
+     .search-outer, .search-outer input{
          max-width: 100%;
      }
 
      .custom-svg-icon {
-        width: 10vw;
+        width: 13vw;
     }
 
 

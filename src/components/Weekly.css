@@ -1,4 +1,4 @@
-.hourly-card .weather-icon {
+.hourly-card .weather-icon{
     font-size: min(3vw, 3vh);
     color: #1e1e1e;
     padding-bottom:10%;
@@ -16,8 +16,8 @@
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
-.hourly-card,
-.weekly-card {
+.hourly-card p,
+.weekly-card p{
     font-size: min(2.2vw, 2.2vh);
 }
 

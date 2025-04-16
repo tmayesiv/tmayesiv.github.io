@@ -88,7 +88,7 @@ function App() {
   return (
     <div className="app-container">
       {/* Search and Autocomplete Function */}
-
+      <div className = "search-outer">
       <Autocomplete
         apiKey={GOOGLE_KEY}
         className="search"
@@ -109,6 +109,7 @@ function App() {
         placeholder="Search for a location"
 
       />
+      </div>
 
 
       {/*Conditionally render the weather information only if weatherData exists.*/}
