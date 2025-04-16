@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import BigCard from "./components/BigCard";
-import SearchBar from "./components/SearchBar";
 import { fetchWeather3, fetchWeatherByCoords } from "./services/weatherServices3";
 import "./App.css";
 import Hourly from "./components/Hourly";
@@ -87,32 +86,30 @@ function App() {
 
   return (
     <div className="app-container">
-      {/*Render the SearchBar component and pass the handleSearch function as a prop called 'onSearch'.
-          When the user submits a search (presses Enter), SearchBar calls this function.*/}
-      {/*<SearchBar onSearch={handleSearch} />**/}
+      {/* Search and Autocomplete Function */}
+      
       <Autocomplete
         apiKey={GOOGLE_KEY}
+        className="search"
         onPlaceSelected={(place) => {
-          console.log(place.formatted_address)
-          //handleSearch(place.formatted_address)
-          handleSearch(place.geometry.location.lat(), place.geometry.location.lng())
+          if (place && place.geometry && place.geometry.location) {
+            const lat = place.geometry.location.lat();
+            const lng = place.geometry.location.lng();
+            handleSearch(lat, lng);
+          } else {
+            console.warn("Invalid place selection — missing geometry:", place);
+          }
         }}
-
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "10px auto",
-          padding: "10px",
-          backgroundColor: "#f5f5f5",
-          borderRadius: "10px",
-          boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.3)",
-          width: "100%",
-          height: "30px",
-          maxWidth: "400px",
-          borderWidth: "0",
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault(); //Prevent Enter key from doing anything
+          }
         }}
+        placeholder="Search for a location"
+        
       />
+
+
       {/*Conditionally render the weather information only if weatherData exists.*/}
       {weatherData && (
         <div className="grid-container">
@@ -162,10 +159,10 @@ function App() {
             </div>
             <div className="col">
               <BigCard
-                title="Humidity"
-                value={weatherData.current.humidity}
+                title="Precipitation"
+                value={Math.round(weatherData.hourly[0].pop * 100)}
                 unit="%"
-                svgFileName={getRaindropSvg(weatherData.current.humidity)}
+                svgFileName={getRaindropSvg(weatherData.hourly[0].pop * 100)}
               />
               <BigCard
                 title="UV Index"
