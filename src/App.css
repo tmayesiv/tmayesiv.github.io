@@ -7,11 +7,10 @@
 
  .app-container {
      max-width: 60%;
-     min-width:300px;
+     min-width:fit-content;
      margin: auto;
      display: flex;
      flex-direction: column;
-     /* added to align search bar and grid vertically */
      justify-content: center;
  }
 
@@ -20,7 +19,7 @@
      margin: auto;
      display: flex;
      flex-direction: column;
-     /*min-width: fit-content;*/
+     min-width: fit-content;
      justify-content: center;
  }
 
@@ -29,6 +28,7 @@
      display: flex;
      flex-direction: row;
      justify-content: center;
+     min-width: fit-content;
  }
 
  .grid-container .col {
@@ -37,6 +37,7 @@
      display: flex;
      flex-direction: column;
      justify-content: stretch;
+     min-width: fit-content;
  }
 
  .unit-toggle {
@@ -99,3 +100,41 @@
     font-weight:600;
     font-size: min(2vh, 2vw);
  }
+
+ @media screen and (max-width: 600px) {
+    .app-container,
+    .grid-container,
+    .grid-container .row,
+    .grid-container .col {
+        width: 100%;
+        min-width: fit-content;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .slider .label {
+        font-size: 0.9rem;
+    }
+
+    .unit-toggle {
+        justify-content: center;
+    }
+
+    .big-card {
+        width:100%;
+    }
+
+    .big-value {
+        text-align:center;
+        font-size: 8vh;
+    }
+
+    .hourly-card, .weekly-card{
+        font-size: min(2vw, 2vh);
+    }
+
+    .hourly-card .temp, .weekly-card .low{
+        padding: 15% 0 15% 0;
+    }
+ 
+}

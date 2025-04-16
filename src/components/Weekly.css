@@ -28,8 +28,13 @@
     padding: 10px 10px 10px 10px;
 }
 
+.card-content p {
+    padding: 10px;
+}
+
 .big-card .weather-icon {
-    font-size: min(9vw, 9vh);
+    font-size: min(10vw, 10vh);
+    flex:1;
     text-align:center;
     color: #1e1e1e;
 }

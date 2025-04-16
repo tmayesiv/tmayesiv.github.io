@@ -1,5 +1,5 @@
 import React from "react";
-import "./BigCard.css";
+import "./Weekly.css";
 import DayDisplay from "./DayDisplay";
 
 function Weekly({ title, day, high0, low0, high1, low1, high2, low2, high3, low3, high4, low4, high5, low5, high6, low6 }) {
