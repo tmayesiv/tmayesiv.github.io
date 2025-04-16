@@ -7,7 +7,7 @@
 
  .app-container {
      max-width: 60%;
-     min-width:500px;
+     min-width:300px;
      margin: auto;
      display: flex;
      flex-direction: column;

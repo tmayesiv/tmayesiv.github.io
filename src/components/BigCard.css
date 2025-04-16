@@ -79,6 +79,7 @@
 
 .custom-svg-icon {
     max-width: min(9vw, 9vh);
+    min-width: min(8vw, 8vh);
     flex: 1;
     fill: #1e1e1e;
     margin:auto;
