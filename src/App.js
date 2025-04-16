@@ -6,6 +6,7 @@ import Hourly from "./components/Hourly";
 import Weekly from "./components/Weekly";
 import CityDisplay from "./components/CityDisplay";
 import Autocomplete from "react-google-autocomplete";
+import Summary from "./components/Summary";
 import { isDaytimeAtLocation, convertTemp, convertWind, getRaindropSvg, getUvSvg } from "./components/unitUtils";
 
 
@@ -135,6 +136,11 @@ function App() {
                 </div>
               </label>
             </div>
+          </div>
+          <div className="row">
+              <Summary
+                summary={weatherData.daily[0].summary}
+              />
           </div>
           <div className="row">
             <div className="col">

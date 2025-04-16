@@ -7,27 +7,28 @@
 
  .app-container {
      max-width: 60%;
-     min-width:fit-content;
+     min-width: fit-content;
      margin: auto;
      display: flex;
      flex-direction: column;
      justify-content: center;
  }
-.search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px auto;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    height: 30px;
-    max-width: 400px;
-    border-width: 0;
-}
- 
+
+ .search {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 10px auto;
+     padding: 10px;
+     background-color: #f5f5f5;
+     border-radius: 10px;
+     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+     width: 100%;
+     height: 30px;
+     max-width: 400px;
+     border-width: 0;
+ }
+
 
  .grid-container {
      width: 100%;
@@ -111,45 +112,68 @@
      transform: translateX(100%);
  }
 
+ .row .summary {
+     flex: 1;
+     align-items: start;
+     text-align: left;
+     font-size: min(2.5vw, 2.5vh);
+     font-weight:500;
+ }
+
  .high {
-    font-weight:600;
-    font-size: min(2vh, 2vw);
+     font-weight: 600;
+     font-size: min(2vh, 2vw);
+     padding-bottom: 10%;
+ }
+
+ .hourly-card,
+ .weekly-card {
+     font-size: min(2.2vw, 2.2vh);
+ }
+
+ .hourly-card .temp,
+ .weekly-card .low {
+     padding: 15% 0 15% 0;
  }
 
  @media screen and (max-width: 600px) {
-    .app-container,
-    .grid-container,
-    .grid-container .row,
-    .grid-container .col {
-        width: 100%;
-        min-width: fit-content;
-        flex-direction: column;
-        align-items: center;
-    }
 
-    .slider .label {
-        font-size: 0.9rem;
-    }
+     .app-container,
+     .grid-container,
+     .grid-container .row,
+     .grid-container .col {
+         width: 100%;
+         min-width: fit-content;
+         flex-direction: column;
+         align-items: center;
+     }
 
-    .unit-toggle {
-        justify-content: center;
-    }
+     .slider .label {
+         font-size: 0.9rem;
+     }
 
-    .big-card {
-        width:100%;
-    }
+     .unit-toggle {
+         justify-content: center;
+     }
 
-    .big-value {
-        text-align:center;
-        font-size: 8vh;
-    }
+     .big-card {
+         width: 100%;
+     }
 
-    .hourly-card, .weekly-card{
-        font-size: min(2vw, 2vh);
-    }
+     .big-value {
+         text-align: center;
+         font-size: 8vh;
+     }
 
-    .hourly-card .temp, .weekly-card .low{
-        padding: 15% 0 15% 0;
-    }
- 
-}
+     .day5, .day6, .hour5, .hour6 {
+        display:none;
+     }
+
+     .hourly-card,
+     .weekly-card {
+         font-size: min(3vw, 3vh);
+     }
+
+
+
+ }
