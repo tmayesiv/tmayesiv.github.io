@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import BigCard from "./components/BigCard";
 import { fetchWeather3, fetchWeatherByCoords } from "./services/weatherServices3";
 import "./App.css";
@@ -39,31 +39,37 @@ function App() {
 
   //useEffect hook to get the user's current location when the component mounts.
   //If the location is obtained, fetch the weather data for that location.
-  useEffect(() => {
+
+  const requestLocation = () => {
+    // Clear the Autocomplete input text
+    if (autocompleteRef.current) {
+      autocompleteRef.current.value = "";
+    }
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          //Get the latitude and longitude from the position object.
           const { latitude, longitude } = position.coords;
-          //Call the fetchWeather3 function with the coordinates to get the weather data.
           fetchWeatherByCoords(latitude, longitude)
-            .then((data) => {
-              //Update the weatherData state with the fetched data.
-              setWeatherData(data);
-            })
-            .catch((error) => {
-              //Log any errors that occur during the fetch.
-              console.error("Error fetching weather data:", error);
-            });
+            .then((data) => setWeatherData(data))
+            .catch((error) =>
+              console.error("Error fetching weather data:", error)
+            );
         },
-
         (error) => {
-          //Log any errors that occur during the geolocation process.
           console.error("Error getting location:", error);
         }
       );
     }
+  };
+
+
+  useEffect(() => {
+    requestLocation();
   }, []);
+
+  const autocompleteRef = useRef(null);
+
 
   //Classify wind direction
   const getCompassDirection = (deg) => {
@@ -88,27 +94,36 @@ function App() {
   return (
     <div className="app-container">
       {/* Search and Autocomplete Function */}
-      <div className = "search-outer">
-      <Autocomplete
-        apiKey={GOOGLE_KEY}
-        className="search"
-        onPlaceSelected={(place) => {
-          if (place && place.geometry && place.geometry.location) {
-            const lat = place.geometry.location.lat();
-            const lng = place.geometry.location.lng();
-            handleSearch(lat, lng);
-          } else {
-            console.warn("Invalid place selection — missing geometry:", place);
-          }
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            e.preventDefault(); //Prevent Enter key from doing anything
-          }
-        }}
-        placeholder="Search for a location"
+      <div className="search-outer">
+        <Autocomplete
+          ref={autocompleteRef}
+          apiKey={GOOGLE_KEY}
+          className="search"
+          onPlaceSelected={(place) => {
+            if (place && place.geometry && place.geometry.location) {
+              const lat = place.geometry.location.lat();
+              const lng = place.geometry.location.lng();
+              handleSearch(lat, lng);
+            } else {
+              console.warn("Invalid place selection — missing geometry:", place);
+            }
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault(); //Prevent Enter key from doing anything
+            }
+          }}
+          placeholder="Search for a location"
 
-      />
+        />
+        <button onClick={requestLocation} className="location-button" title="Use My Current Location">
+          <img
+          src="/images/custom/location.svg"
+          alt="Use My Location Button"
+          className="location-icon"
+          />
+        </button>
+
       </div>
 
 
