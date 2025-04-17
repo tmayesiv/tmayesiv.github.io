@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 import BigCard from "./components/BigCard";
 import { fetchWeather3, fetchWeatherByCoords } from "./services/weatherServices3";
 import "./App.css";
@@ -41,11 +41,6 @@ function App() {
   //If the location is obtained, fetch the weather data for that location.
 
   const requestLocation = () => {
-    // Clear the Autocomplete input text
-    if (autocompleteRef.current) {
-      autocompleteRef.current.value = "";
-    }
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -67,8 +62,6 @@ function App() {
   useEffect(() => {
     requestLocation();
   }, []);
-
-  const autocompleteRef = useRef(null);
 
 
   //Classify wind direction
@@ -96,7 +89,6 @@ function App() {
       {/* Search and Autocomplete Function */}
       <div className="search-outer">
         <Autocomplete
-          ref={autocompleteRef}
           apiKey={GOOGLE_KEY}
           className="search"
           onPlaceSelected={(place) => {
@@ -116,13 +108,6 @@ function App() {
           placeholder="Search for a location"
 
         />
-        <button onClick={requestLocation} className="location-button" title="Use My Current Location">
-          <img
-          src="/images/custom/location.svg"
-          alt="Use My Location Button"
-          className="location-icon"
-          />
-        </button>
 
       </div>
 
