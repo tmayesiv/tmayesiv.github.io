@@ -17,7 +17,7 @@
      justify-content: center;
  }
 
- .heading {
+ .header {
     display:flex;
     flex-direction:row;
     justify-content:space-between;
@@ -161,6 +161,10 @@
 
      .app-container{
         max-width:90%;
+     }
+
+     .header {
+        flex-direction:column;
      }
 
      .city-name h3 {

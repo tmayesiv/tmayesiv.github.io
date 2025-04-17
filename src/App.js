@@ -99,7 +99,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className = "heading">
+      <div className = "header">
         {/*Wordmark*/}
         <img className = "wordmark"
         src = "/images/custom/Rain or Shine.svg"
