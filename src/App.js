@@ -83,9 +83,28 @@ function App() {
     );
   };
 
+  const expectRain = () => {
+    const yes = "Take an umbrella to stay dry.";
+    const maybe = "Pack a rain jacket just in case.";
+    const no = "No chance of precipitation.";
+  
+    if (weatherData.daily[0].pop <= 0.1) {
+      return no;
+    } else if (weatherData.daily[0].pop <= 0.4) {
+      return maybe;
+    } else {
+      return yes;
+    }
+  };  
 
   return (
     <div className="app-container">
+      <div className = "heading">
+        {/*Wordmark*/}
+        <img className = "wordmark"
+        src = "/images/custom/Rain or Shine.svg"
+        alt = "Rain or Shine wordmark"
+        />
       {/* Search and Autocomplete Function */}
       <div className="search-outer">
         <Autocomplete
@@ -109,6 +128,7 @@ function App() {
 
         />
 
+      </div>
       </div>
 
 
@@ -143,6 +163,7 @@ function App() {
           <div className="row">
             <Summary
               summary={weatherData.daily[0].summary}
+              rainMessage={expectRain()}
             />
           </div>
           <div className="row">

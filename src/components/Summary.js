@@ -1,10 +1,10 @@
 import React from "react"
 
-function Summary({summary}) {
+function Summary({summary, rainMessage}) {
 
     return (
         <div className="summary">
-                <p>{summary}.</p>
+                <p>{summary}. {rainMessage}</p>
         </div>
     );
 }
