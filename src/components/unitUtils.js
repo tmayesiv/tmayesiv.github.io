@@ -17,7 +17,7 @@ export const convertTemp = (tempF, toUnits) => {
 
 export const convertWind = (windMph, toUnits) => {
     return toUnits === "metric"
-        ? (windMph * 0.44704).toFixed(1)
+        ? Math.round(windMph * 1.60934)
         : Math.round(windMph);
 };
 

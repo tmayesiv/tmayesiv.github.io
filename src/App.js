@@ -182,7 +182,7 @@ function App() {
               <BigCard
                 title="Wind"
                 value={convertWind(weatherData.current.wind_speed, units)}
-                speed={units === "metric" ? "m/s" : "mph"}
+                speed={units === "metric" ? "km/h" : "mph"}
                 direction={`${getCompassDirection(weatherData.current.wind_deg)}`}
                 iconClass={`wi-wind from-${Math.round(weatherData.current.wind_deg / 5) * 5}-deg`}
               />
