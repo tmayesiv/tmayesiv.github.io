@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# Rain or Shine v1.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Rain or Shine is a live weather app that can be accessed online at [tmayesiv.github.io](https://tmayesiv.github.io/). This is accessible in desktop and mobile browsers.
 
-## Available Scripts
 
-In the project directory, you can run:
+## To Use Our App
 
-### `npm start`
+Visit [tmayesiv.github.io](https://tmayesiv.github.io/) to access our website.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Your Current Location
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+First, we will prompt you through your browser for your current location. Click "Allow" if you wish to see the weather for your current location.
 
-### `npm test`
+If you do not wish to give your location, that's okay! We have a search feature regardless of this choice. If you deny this request initially but further wish to allow it, you can adjust this setting in your browser for this site.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Search Bar
 
-### `npm run build`
+At the top is a search bar for searching locations. Typing here will drop down a menu of relevant location names. Select one to change the weater data to this location.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Units Switch
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+At the upper right is a switch with "°F" and "°C". Click this switch to alternate between the US Customary units ("°F") and metric system ("°C").
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Results
 
-### `npm run eject`
+The results are intentionally kept very simple. The first four cards display the current temperature, wind, precipitation, and UV index.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+These are the meanings of the associated icons:
+- "Temperature": Cloud coverage, and precipitation (presence and type).
+- "Wind": The tip of the arrow is the direction the wind is blowing, on a standard compass.
+- "Precipitation": The fraction the drop is filled is the precipitation percentage.
+- "UV Index": The meter moves from left to right linearly in the range 0 to 11.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The next two display the forecast over the next few hours ("Hourly") and the forecast over the next few days ("Weekly").
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+In "Hourly", an icon is provided similar to "Temperature" for each hour along with an estimated temperature and the corresponding hour. "5a" means 5:00 AM, while "5p" means 5:00 PM.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+In "Weekly", the estimated high temperature for the day is provided in bold over the estimated low of the day, along with the corresponding day, abbreviated.
 
-## Learn More
+### Refresh
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Reload the page to refresh the weather data.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Create React App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This section is for if you want to get our app running with [Create React App](https://github.com/facebook/create-react-app).
 
-### Analyzing the Bundle Size
+### Install Node.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If you haven't yet installed Node.js:
+- Visit [nodejs.org](https://nodejs.org/en) and download Node.js.
+- Follow the installation wizard to install.
+- You can verify that it is installed by running (in any directory):
+```
+node -v
+npm -v
+```
+It is installed correctly if this returns version numbers, such as:
+```
+v20.13.1
+10.8.1
+```
 
-### Making a Progressive Web App
+### Clone Repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Navigate to the folder that you want to hold your repo directory.
+- To clone our repo, run: `git clone https://github.com/tmayesiv/tmayesiv.github.io.git`. This creates a new folder called `tmayesiv.github.io` within the current directory.
+- Navigate to this new folder by running: `cd .\tmayesiv.github.io\`. Everything will be done from this folder.
 
-### Advanced Configuration
+### Install Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+To install dependencies, run: `npm install`.
 
-### Deployment
+### Available Commands
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Now you can run these commands (one at a time):
 
-### `npm run build` fails to minify
+#### `npm start`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To run the app in development mode, run: `npm start`. This opens [http://localhost:3000](http://localhost:3000) for locally hosted viewing in the browser.
+
+When you make and save any changes in the code, this page will automatically reload.
+
+#### `npm test` (Extra)
+
+If you want to run any tests in the interactive watch mode, run: `npm test`.
+
+For more details, see [running tests](https://facebook.github.io/create-react-app/docs/running-tests) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
+
+#### `npm run build` (Extra)
+
+If you want to build the app for production to the `build` folder, run: `npm run build`.
+
+This correctly bundles React in production mode and optimizes the build for the best performance. Your app is now ready to be deployed!
+
+For more details, see [deployment](https://facebook.github.io/create-react-app/docs/deployment).
+
+### Learn More (Extra)
+
+For more on CRA's, see the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+For more on React in general, see the [React documentation](https://reactjs.org/).
