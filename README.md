@@ -88,13 +88,22 @@ If you want to run any tests in the interactive watch mode, run: `npm test`.
 
 For more details, see [running tests](https://facebook.github.io/create-react-app/docs/running-tests) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
-#### `npm run build` (Extra)
+#### `npm run build` (For creating a production build)
 
 If you want to build the app for production to the `build` folder, run: `npm run build`.
 
 This correctly bundles React in production mode and optimizes the build for the best performance. Your app is now ready to be deployed!
 
 For more details, see [deployment](https://facebook.github.io/create-react-app/docs/deployment).
+
+To deploy the new build, then run the following commands:
+
+cp -R build/ .
+git add .
+git commit -m "Enter Commit Message Here"
+git push origin main
+
+GitHub then uploads the new build to the live site.
 
 ### Learn More (Extra)
 
