@@ -99,8 +99,11 @@ For more details, see [deployment](https://facebook.github.io/create-react-app/d
 To deploy the new build, then run the following commands:
 
 cp -R build/ .
+
 git add .
+
 git commit -m "Enter Commit Message Here"
+
 git push origin main
 
 GitHub then uploads the new build to the live site.
